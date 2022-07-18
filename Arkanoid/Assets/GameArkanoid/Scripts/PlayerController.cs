@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speedPlayer;
+    private int auxDirection;
+    private float speedPlayer;
 
     void Start()
     {
-        
+        speedPlayer = 8f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (auxDirection != 0)
+        {
+            transform.Translate(auxDirection * speedPlayer * Time.deltaTime, 0, 0 );
+        }
     }
 
-    public void movePlayer()
+    public void TouchHorizontal(int direction)
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(Vector2.left * speedPlayer );
-        }
+        auxDirection = direction;
     }
 }
